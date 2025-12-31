@@ -29,6 +29,11 @@ Follow these steps to get the project running locally:
    ```bash
    yarn install
    ```
+3. Configure environment variables:
+   ```bash
+   cp .env-sample .env
+   ```
+   Edit `.env` and provide your own values for `PORT`, `GA_ID`, etc.
 
 ### Running the App
 - **Development Mode** (with auto-reload):
@@ -39,7 +44,30 @@ Follow these steps to get the project running locally:
   ```bash
   yarn start
   ```
-The server will start on the port specified in `config.js` (default: `3037`).
+The server will start on the port specified in your `.env` file (default: `3037`).
+
+## 🌐 Deployment (Optional - Nginx)
+
+If you are deploying to a production server using Nginx as a reverse proxy, you can use the provided `nginx.conf` as a template.
+
+### Setup Steps:
+1. Create a new Nginx configuration file:
+   ```bash
+   sudo nano /etc/nginx/sites-available/chess-online
+   ```
+2. Copy the content from `nginx.conf` and paste it into the file. Adjust the `server_name` to your domain.
+3. Enable the configuration:
+   ```bash
+   sudo ln -s /etc/nginx/sites-available/chess-online /etc/nginx/sites-enabled/
+   ```
+4. Test and restart Nginx:
+   ```bash
+   sudo nginx -t
+   sudo systemctl restart nginx
+   ```
+
+> [!IMPORTANT]
+> Make sure the `proxy_pass` port in Nginx matches the `PORT` defined in your `.env` file. The provided configuration includes necessary headers for WebSocket support (`Upgrade`, `Connection`).
 
 ## 📜 Game Rules
 
