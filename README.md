@@ -1,5 +1,5 @@
 # Chess
-This is an upgraded version of [almatrass/chess-site](https://github.com/almatrass/chess-site)
+This is an upgraded version of [almatrass/chess-site](https://github.com/khaizinam/check-html)
 This version contains better CSS styling, JS game code checking mechanism.
 
 **This project does not work on mobile**
@@ -8,25 +8,15 @@ This version contains better CSS styling, JS game code checking mechanism.
 
 <hr>
 
-### Instructions of use: 
+### Multi-player & Multi-room Support
 
-> Live website: https://chess-website-completed.onrender.com/
-> 
-> **Note: This might load upto a minute**
-
-Create a game by typing in a random game code and then pressing "Create game".
-
-<img src="https://github.com/marsianjohncarter/Chess/assets/116607327/0efccd5f-902c-4189-a5c6-5e57de7a500c" width="500" height="200">
-
-Join a game by typing in the random game code that you entered earlier and then pressing "Join game".
-
-<img src="https://github.com/marsianjohncarter/Chess/assets/116607327/013506ec-bfeb-4c55-8635-b467e08a94d8" width="500" height="200">
-
-
-You will then be able to play a chess game with whoever connects with you onto your game.
-
-<img src="https://github.com/marsianjohncarter/Chess/assets/116607327/bd160133-6e9b-4b57-98b3-2b7783ae8bb1" width="500" height="550">
-<hr>
+This project supports **multiple simultaneous games** using a "Game Code" system.
+- **Independent Rooms**: Each unique "Game Code" creates an isolated room. Players with the same code play against each other without interference from other rooms.
+- **Simultaneous Games**: You can have dozens of pairs playing in different rooms at the same time.
+- **How to use**:
+    1. Create a game by typing in a unique code (e.g., `my-secret-room-123`).
+    2. Share this code with your opponent.
+    3. Both players will be in the same game instance.
 
 ## Dependencies:
 
@@ -45,11 +35,11 @@ You will then be able to play a chess game with whoever connects with you onto y
 To install dependencies:
 
 ```
-npm i
+yarn
 ```
 
 To start the server:
 
 ```
-node ./server/server.js
+yarn start
 ```

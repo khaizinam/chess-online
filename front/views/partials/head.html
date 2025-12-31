@@ -1,14 +1,48 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta Tags -->
+<title>Chess socket - Play Chess Online</title>
+<meta name="description"
+    content="Play chess online using unique room codes. Real-time multiplayer chess game built with Socket.io.">
+<meta name="keywords" content="chess, multiplayer chess, socket.io chess, online chess, board games">
+<meta name="author" content="khaizinam">
+<link rel="canonical" href="https://chess.khaizinam.io.vn">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chess.khaizinam.io.vn">
+<meta property="og:title" content="Chess socket - Play Chess Online">
+<meta property="og:description"
+    content="Play chess online using unique room codes. Real-time multiplayer chess game built with Socket.io.">
+<meta property="og:image" content="https://chess.khaizinam.io.vn/public/img/main-icon.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://chess.khaizinam.io.vn">
+<meta property="twitter:title" content="Chess socket - Play Chess Online">
+<meta property="twitter:description"
+    content="Play chess online using unique room codes. Real-time multiplayer chess game built with Socket.io.">
+<meta property="twitter:image" content="https://chess.khaizinam.io.vn/public/img/main-icon.png">
+
+<link rel="icon" type="image/x-icon" href="/public/img/main-icon.png">
+<link rel="robots" href="/public/robots.txt">
+
+<link rel="stylesheet" href="/public/css/chessboard.min.css?v=1.0.0" />
+<link rel="stylesheet" href="/public/css/styles.css" />
+
 <script src="/public/js/jquery-3.7.0.min.js"></script>
-<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/valdemirum/Chess/main/favicon.ico">
-<link rel="stylesheet" href="/public/css/chessboard-1.0.0.min.css" />
-<link rel="stylesheet" href="/public/css/styles.css"/>
-<script src="/public/js/chessboard-1.0.0.min.js"></script>
-<script src="/public/js/chess-0.10.3.min.js"></script>
-<script src="/public/js/script.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/public/js/chessboard.min.js?v=1.0.0"></script>
+<script src="/public/js/chess.min.js?v=1.0.0"></script>
+<script src="/public/js/script.js?v=1.0.0"></script>
+
 <script src="/socket.io/socket.io.js"></script>
-<script>let socket = io();</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+
+<script>
+    let socket = io();
+</script>

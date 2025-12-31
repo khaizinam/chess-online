@@ -6,9 +6,10 @@ var $status = $('#status')
 var $pgn = $('#pgn')
 let gameOver = false;
 const alert = document.getElementById('liveAlertPlaceholder');
-            
+const $replayBtn = $('#replayBtn');
 
-function onDragStart (source, piece, position, orientation) {
+
+function onDragStart(source, piece, position, orientation) {
     // do not pick up pieces if the game is over
     if (game.game_over()) return false
     if (!gameHasStarted) return false;
@@ -24,7 +25,7 @@ function onDragStart (source, piece, position, orientation) {
     }
 }
 
-function onDrop (source, target) {
+function onDrop(source, target) {
     let theMove = {
         from: source,
         to: target,
@@ -42,32 +43,32 @@ function onDrop (source, target) {
     updateStatus()
 }
 
-socket.on('newMove', function(move) {
+socket.on('newMove', function (move) {
     game.move(move);
     board.position(game.fen());
     updateStatus();
 });
 
 const appendAlert = (title, message, type) => {
-const wrapper = document.createElement('div')
-wrapper.innerHTML = [
-`<div class="alert alert-${type} alert-dismissible" role="alert">`,
-    `<strong>${title}</strong> <div>${message}</div>`,
-    ' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    '</div>'
-].join('')
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `<strong>${title}</strong> <div>${message}</div>`,
+        ' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('')
 
-alert.append(wrapper)
+    alert.append(wrapper)
 }
 
 
 // update the board position after the piece snap
 // for castling, en passant, pawn promotion
-function onSnapEnd () {
+function onSnapEnd() {
     board.position(game.fen())
 }
 
-function updateStatus () {
+function updateStatus() {
     var status = ''
 
     var moveColor = 'White'
@@ -104,12 +105,23 @@ function updateStatus () {
         if (game.in_check()) {
             status += ', ' + moveColor + ' is in check'
         }
-        
+
     }
 
     $status.html(status);
     $pgn.html(game.pgn({ maxWidth: 5, newline: '<br />' }));
+
+    // Show replay button if game is over
+    if (game.game_over() || gameOver) {
+        $replayBtn.removeClass('hidden');
+    } else {
+        $replayBtn.addClass('hidden');
+    }
 }
+
+$replayBtn.on('click', function () {
+    socket.emit('requestReplay', { code: urlParams.get('code') });
+});
 
 var config = {
     draggable: true,
@@ -130,16 +142,32 @@ updateStatus()
 var urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('code')) {
     socket.emit('joinGame', {
-        code: urlParams.get('code')
+        code: urlParams.get('code'),
+        color: playerColor
     });
 }
 
-socket.on('startGame', function() {
+socket.on('errorJoin', function (type) {
+    if (type === 'roleTaken') {
+        window.location.replace('/?error=roleTaken');
+    } else if (type === 'limitReached') {
+        window.location.replace('/?error=limitReached');
+    }
+});
+
+socket.on('startGame', function () {
     gameHasStarted = true;
     updateStatus()
 });
 
-socket.on('gameOverDisconnect', function() {
+socket.on('gameOverDisconnect', function () {
     gameOver = true;
     updateStatus()
+});
+socket.on('gameReplayed', function () {
+    game = new Chess();
+    board.position('start');
+    gameOver = false;
+    updateStatus();
+    appendAlert('Game Reset', 'The match has been restarted.', 'info');
 });

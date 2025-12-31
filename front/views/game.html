@@ -1,41 +1,52 @@
 <html>
-    <head>
-        {{> head}}
-    </head>
-    <body>
-        <div class="lg:px-[30%] md:px-[20%] sm:px-[5%] px-[5%] pt-[2%] h-fit">
+
+<head>
+    {{> head}}
+</head>
+
+<body>
+    <div class="lg:px-[30%] md:px-[20%] sm:px-[5%] px-[5%] pt-[2%] h-fit">
         <div class="bg-black text-white rounded-4xl text-center">
             <div id="myBoard" class=" center"></div>
 
-        <div id="chessboard-background" class="grid mx-[5%]">
+            <div id="chessboard-background" class="grid mx-[5%]">
 
                 <div class="body">
-                <div class="flex flex-col items-center my-10">
-                    <label>Status:</label>
-                    <div id="status" class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-lg font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset w-fit"></div>
-                </div>
-                <div class="container">
-                    <div class="bg-zinc-800 h-30 overflow-x-auto rounded-3xl p-3">
-                        <h4 id="scrollspyHeading1">PGN:</h4>
-                        <p><div id="pgn"></div></p>
-                      </div>
-                </div>
-                <div id="liveAlertPlaceholder"></div>
+                    <div class="flex flex-col items-center my-10">
+                        <label>Status:</label>
+                        <div id="status"
+                            class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-lg font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset w-fit">
+                        </div>
+                        <button id="replayBtn"
+                            class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-200 active:scale-95 hidden">
+                            Play Again
+                        </button>
+                    </div>
+                    <div class="container">
+                        <div class="bg-zinc-800 h-30 overflow-x-auto rounded-3xl p-3">
+                            <h4 id="scrollspyHeading1">PGN:</h4>
+                            <p>
+                            <div id="pgn"></div>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="liveAlertPlaceholder"></div>
 
+                </div>
             </div>
         </div>
     </div>
-    </div>
-        <script>
-            let playerColor = '{{color}}';
-            function preventBehavior(e) {
-    e.preventDefault(); 
-};
+    <script>
+        let playerColor = '{{color}}';
+        function preventBehavior(e) {
+            e.preventDefault();
+        };
 
-document.addEventListener("touchmove", preventBehavior, {passive: false});
-            console.log('Playing as ' + playerColor);
-        </script>
-        <script src="/public/js/index.js"></script>
+        document.addEventListener("touchmove", preventBehavior, { passive: false });
+        console.log('Playing as ' + playerColor);
+    </script>
+    <script src="/public/js/index.js"></script>
 
-    </body>
+</body>
+
 </html>
