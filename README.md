@@ -1,5 +1,5 @@
 # Chess
-This is an upgraded version of [almatrass/chess-site](https://github.com/khaizinam/check-html)
+This is an upgraded version of [almatrass/chess-site](https://github.com/khaizinam/chess-online)
 This version contains better CSS styling, JS game code checking mechanism.
 
 **This project does not work on mobile**
