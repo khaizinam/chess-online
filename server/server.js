@@ -31,6 +31,20 @@ const Handlebars = handlebars.create({
 app.engine('html', Handlebars.engine);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, '..', 'front', 'views'));
-app.use('/public', express.static(path.join(__dirname, '..', 'front', 'public')));
-
+app.use(
+  '/public',
+  express.static(
+    path.join(__dirname, '..', 'front', 'public'),
+    {
+      etag: false,
+      lastModified: false,
+      maxAge: 0,
+      setHeaders: (res) => {
+        res.setHeader('Cache-Control', 'no-store');
+      }
+    }
+  )
+);
+app.set('env', 'development');
+app.disable('view cache');
 routes(app);
