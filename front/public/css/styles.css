@@ -4,14 +4,16 @@
 }
 
 #myBoard {
-    width: 60%;
+    width: 100%;
+    max-width: 600px;
     border-radius: 25px;
-    /* touch-action: pinch-; */
+    margin: auto;
 }
 
 .center {
     margin: auto;
-    width: 50%;
+    width: 100%;
+    max-width: 600px;
     padding: 10px;
     padding-top: 20px;
 }
@@ -24,9 +26,16 @@
     height: 30%;
 }
 
+.timer-box span {
+    line-height: 1;
+}
+
+#status {
+    transition: all 0.3s ease;
+}
+
 body {
-    padding-left: 30px;
-    padding-right: 30px;
+    background-color: #000;
 }
 
 #gameboard {
@@ -35,7 +44,6 @@ body {
 
 #chessboard-background {
     height: 95%;
-    /* width:auto; */
 }
 
 #scroll-pgn {
@@ -46,27 +54,18 @@ body {
     margin: 20px;
 }
 
-
-@media (width <= 1200px) {
-    #myBoard {
-        width: 70%;
-    }
+.game-box {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
 }
 
-@media (width <= 1100px) {
-    #myBoard {
-        width: 80%;
+@media (min-width: 768px) {
+    .center {
+        width: 50%;
     }
-}
 
-@media (width <= 1000px) {
-    #myBoard {
-        width: 90%;
-    }
-}
-
-@media (width <= 350px) {
-    #myBoard {
-        width: 100%;
+    .center {
+        max-width: 550px;
     }
 }

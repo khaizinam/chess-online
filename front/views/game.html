@@ -5,24 +5,90 @@
 </head>
 
 <body>
-    <div class="lg:px-[30%] md:px-[20%] sm:px-[5%] px-[5%] pt-[2%] h-fit">
+    <div class="h-fit game-box">
         <div class="bg-black text-white rounded-4xl text-center">
             <div id="myBoard" class=" center"></div>
 
-            <div id="chessboard-background" class="grid mx-[5%]">
-
+            <div id="chessboard-background">
                 <div class="body">
-                    <div class="flex flex-col items-center my-10">
-                        <label>Status:</label>
-                        <div id="status"
-                            class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-lg font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset w-fit">
+                    <div class="flex flex-col items-center pt-2 px-2">
+                        <div
+                            class="flex items-center gap-2 bg-zinc-800 p-2 px-4 rounded-2xl border border-white/5 shadow-2xl">
+                            <span class="text-gray-400 text-sm">Room ID:</span>
+                            <span id="roomCodeDisplay" class="font-bold text-white tracking-widest">---</span>
+                            <button id="copyCodeBtn"
+                                class="ml-2 p-1.5 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
+                                title="Copy Code">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="copy-icon">
+                                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="check-icon hidden text-green-500">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </button>
+                            <button id="shareLinkBtn"
+                                class="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
+                                title="Share Link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                                    <polyline points="16 6 12 2 8 6" />
+                                    <line x1="12" x2="12" y1="2" y2="15" />
+                                </svg>
+                            </button>
                         </div>
-                        <button id="replayBtn"
-                            class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-200 active:scale-95 hidden">
-                            Play Again
-                        </button>
                     </div>
-                    <div class="container">
+                    <div class="flex flex-col w-full px-4 my-6">
+                        <div class="flex justify-between items-end w-full mb-4">
+                            <div class="flex flex-col items-start">
+                                <label class="text-xs text-gray-400 mb-1">Status</label>
+                                <div id="status"
+                                    class="inline-flex items-center rounded-md bg-zinc-800 px-3 py-1 text-sm font-medium text-white ring-1 ring-white/10 ring-inset w-fit whitespace-nowrap">
+                                    Waiting...
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-center">
+                                <div class="timer-box flex flex-col items-center">
+                                    <span class="text-[10px] text-gray-500 uppercase">White</span>
+                                    <span id="whiteTimer" class="font-mono text-xl text-white">15:00</span>
+                                </div>
+                                <div class="timer-box flex flex-col items-center">
+                                    <span class="text-[10px] text-gray-500 uppercase">Black</span>
+                                    <span id="blackTimer" class="font-mono text-xl text-white">15:00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3 justify-start">
+                            <div class="flex gap-3">
+                                <button id="resignBtn"
+                                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-1.5 px-4 rounded-lg shadow-lg transition-all duration-200 active:scale-95 hidden text-sm">
+                                    Surrender
+                                </button>
+                                <button id="backToMenuBtn"
+                                    class="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-1.5 px-4 rounded-lg shadow-lg transition-all duration-200 active:scale-95 text-sm">
+                                    Back to Menu
+                                </button>
+                            </div>
+                            <div class="flex gap-3">
+                                <button id="replayBtn"
+                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1.5 px-4 rounded-lg shadow-lg transition-all duration-200 active:scale-95 hidden text-sm">
+                                    Play Again
+                                </button>
+                                <a href="/" id="menuBtn"
+                                    class="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-1.5 px-4 rounded-lg shadow-lg transition-all duration-200 active:scale-95 hidden text-center flex items-center justify-center text-sm">
+                                    Menu
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container hidden">
                         <div class="bg-zinc-800 h-30 overflow-x-auto rounded-3xl p-3">
                             <h4 id="scrollspyHeading1">PGN:</h4>
                             <p>
@@ -45,7 +111,7 @@
         document.addEventListener("touchmove", preventBehavior, { passive: false });
         console.log('Playing as ' + playerColor);
     </script>
-    <script src="/public/js/index.js"></script>
+    <script src="/public/js/index.js?v=1.0.0"></script>
 
 </body>
 
